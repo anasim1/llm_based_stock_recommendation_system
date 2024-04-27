@@ -5,10 +5,10 @@ Developed using Langchain and GPT-4-Turbo as Large Language Model. It has follow
 
 1. Get Ticker Value
 2. Captures Stock Price
-3. Scrap Web for Stock News
+3. Scrapes Web for Stock News
 4. Get Financial Statements
 
-Langchain's **Zero-Shot-React-Description** Agent is used that flows as follows:
+Langchain's **Zero-Shot-React-Description** Agent is used that "reAct" as :
 
 1. Thought
 2. Action
