@@ -1,7 +1,7 @@
 # llm_based_stock_recommendation_system
 This system provides recommendations : Buy, Hold, Sell based on News, Stock Closing Values, and Financial Statements
 
-This is developed using Langchain, and the LLM model is GPT-4-Turbo. It has following features:
+Developed using Langchain and GPT-4-Turbo as Large Language Model. It has following features:
 
 1. Get Ticker Value
 2. Captures Stock Price
