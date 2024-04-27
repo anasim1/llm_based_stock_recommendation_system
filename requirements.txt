@@ -7,3 +7,4 @@ langchain-text-splitters==0.0.1
 streamlit==1.33.0
 yfinance==0.2.38
 streamlit-scrollable-textbox==0.0.3
+duckduckgo_search==5.3.0
