@@ -2,7 +2,6 @@
 import os
 import time
 from bs4 import BeautifulSoup
-from apikey import apikey
 import re
 import requests
 import warnings
