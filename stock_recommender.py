@@ -13,6 +13,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 import streamlit as st
 import streamlit_scrollable_textbox as stx
 import base64
+import json
 from langchain_community.callbacks import StreamlitCallbackHandler
 
 
@@ -41,6 +42,16 @@ st.header('Stock Recommendation System')
 
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
+st.sidebar.write('This tool provides recommendation based on the RAG & ReAct Based Schemes:')
+lst = ['Get Ticker Value', 'Scrape the Web for Stock News', 'Fetch Historic Data on Stock (Closing Price)','Get Financial Statements','LLM ReAct based Verbal Analysis','Output Recommendation: Buy, Sell, or Hold with Justification']
+
+s = ''
+
+for i in lst:
+    s += "- " + i + "\n"
+
+st.sidebar.markdown(s)
+
 if openai_api_key:
     llm=ChatOpenAI(temperature=0,model_name='gpt-4-turbo',openai_api_key=openai_api_key)
 
@@ -52,7 +63,7 @@ if openai_api_key:
         df = df[["Close","Volume"]]
         df.index=[str(x).split()[0] for x in list(df.index)]
         df.index.rename("Date",inplace=True)
-        df = df[-5:]
+       # df = df[-5:]
         return df.to_string()
 
 
@@ -137,7 +148,7 @@ if openai_api_key:
         tools=tools,
         verbose=True,
         max_iteration=4,
-        return_intermediate_steps=True,
+        return_intermediate_steps=False,
         handle_parsing_errors=True
     )
 
@@ -182,7 +193,4 @@ if openai_api_key:
         with st.chat_message("assistant"):
             st_callback = StreamlitCallbackHandler(st.container())
             response = zero_shot_agent(f'Is {prompt} a good investment choice right now?', callbacks=[st_callback])
-            st.write(response)
-
-
-
+            st.write(response["output"])
