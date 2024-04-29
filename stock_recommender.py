@@ -43,7 +43,7 @@ st.header('Stock Recommendation System')
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
 st.sidebar.write('This tool provides recommendation based on the RAG & ReAct Based Schemes:')
-lst = ['Get Ticker Value', 'Scrape the Web for Stock News', 'Fetch Historic Data on Stock (Closing Price)','Get Financial Statements','LLM ReAct based Verbal Analysis','Output Recommendation: Buy, Sell, or Hold with Justification']
+lst = ['Get Ticker Value', 'Fetch Historic Data on Stock (Closing Price)','Get Financial Statements', 'Scrape the Web for Stock News', 'LLM ReAct based Verbal Analysis','Output Recommendation: Buy, Sell, or Hold with Justification']
 
 s = ''
 
