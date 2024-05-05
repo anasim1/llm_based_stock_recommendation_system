@@ -117,24 +117,24 @@ if openai_api_key:
         
     tools = [
     Tool(
-        name = "get stock data",
-        func = get_stock_price,
-        description="Use when you are asked to evaluate or analyze a stock. This will output historic share price data. You should input the stock ticker to it"
-
-    ),
-    Tool(
-        name="DuckDuckGo Search",
+        name="Stock Ticker Search",
         func=search.run,
         description="Use only when you need to get stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task"
 
     ),
     Tool(
-        name="get recent news",
+        name = "Get Stock Historical Price",
+        func = get_stock_price,
+        description="Use when you are asked to evaluate or analyze a stock. This will output historic share price data. You should input the stock ticker to it"
+
+    ),
+    Tool(
+        name="Get Recent News",
         func= get_recent_stock_news,
         description="Use this to fetch recent news about stocks"
     ),
     Tool(
-        name="get financial statements",
+        name="Get Financial Statements",
         func=get_financial_statements,
         description="Use this to get financial statement of the company. With the help of this data company's historic performance can be evaluated. You should input stock ticker to it"
     )
@@ -153,29 +153,28 @@ if openai_api_key:
     )
 
     #Adding predefine evaluation steps in the agent Prompt
-
     new_prompt="""You are a financial advisor. Give stock recommendations for given query.
     Everytime first you should identify the company name and get the stock ticker symbol for the stock.
     Answer the following questions as best you can. You have access to the following tools:
 
-    get stock data: Use when you are asked to evaluate or analyze a stock. This will output historic share price data. You should input the stock ticker to it 
-    DuckDuckGo Search: Use only when you need to get stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task
-    get recent news: Use this to fetch recent news about stocks
-    get financial statements: Use this to get financial statement of the company. With the help of this data company's historic performance can be evaluaated. You should input stock ticker to it
+    Get Stock Historical Price: Use when you are asked to evaluate or analyze a stock. This will output historic share price data. You should input the stock ticker to it 
+    Stock Ticker Search: Use only when you need to get stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task
+    Get Recent News: Use this to fetch recent news about stocks
+    Get Financial Statements: Use this to get financial statement of the company. With the help of this data company's historic performance can be evaluaated. You should input stock ticker to it
 
     steps- 
     Note- if you fail in satisfying any of the step below, Just move to next one
     1) Get the company name and search for the "company name + stock ticker" on internet. Dont hallucinate extract stock ticker as it is from the text. Output- stock ticker. If stock ticker is not found, stop the process and output this text: This stock does not exist
-    2) Use "get stock data" tool to gather stock info. Output- Stock data
-    3) Get company's historic financial data using "get financial statements". Output- Financial statement
-    4) Use this "get recent news" tool to search for latest stock realted news. Output- Stock news
+    2) Use "Get Stock Historical Price" tool to gather stock info. Output- Stock data
+    3) Get company's historic financial data using "Get Financial Statements". Output- Financial statement
+    4) Use this "Get Recent News" tool to search for latest stock related news. Output- Stock news
     5) Analyze the stock based on gathered data and give detailed analysis for investment choice. provide numbers and reasons to justify your answer. Output- Give a single answer if the user should buy,hold or sell. You should Start the answer with Either Buy, Hold, or Sell in Bold after that Justify.
 
     Use the following format:
 
     Question: the input question you must answer
     Thought: you should always think about what to do, Also try to follow steps mentioned above
-    Action: the action to take, should be one of [get stock data, DuckDuckGo Search, get recent news, get financial statements]
+    Action: the action to take, should be one of [Get Stock Historical Price, Stock Ticker Search, Get Recent News, Get Financial Statements]
     Action Input: the input to the action
     Observation: the result of the action
     ... (this Thought/Action/Action Input/Observation can repeat N times, if Thought is empty go to the next Thought and skip Action/Action Input and Observation)
