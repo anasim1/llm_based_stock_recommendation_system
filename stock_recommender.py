@@ -188,8 +188,6 @@ if openai_api_key:
         with st.chat_message("assistant"):
             st_callback = StreamlitCallbackHandler(st.container())
             response = zero_shot_agent(f'Is {prompt} a good investment choice right now?', callbacks=[st_callback])
-           # response = json.loads(response)
-
             st.write(response["output"])
 
 
