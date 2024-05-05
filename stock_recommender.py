@@ -55,6 +55,7 @@ st.sidebar.markdown(s)
 if openai_api_key:
     llm=ChatOpenAI(temperature=0,model_name='gpt-4-turbo',openai_api_key=openai_api_key)
 
+    #Get Historical Stock Closing Price for Last 1 Year
     def get_stock_price(ticker):
         if "." in ticker:
             ticker = ticker.split(".")[0]
@@ -63,7 +64,6 @@ if openai_api_key:
         df = df[["Close","Volume"]]
         df.index=[str(x).split()[0] for x in list(df.index)]
         df.index.rename("Date",inplace=True)
-       # df = df[-5:]
         return df.to_string()
 
 
@@ -75,6 +75,7 @@ if openai_api_key:
         url = re.sub(r"\s","+",url)
         return url
 
+    #Get Recent Stock News
     def get_recent_stock_news(company_name):
         headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
         g_query = google_query(company_name)
@@ -113,8 +114,8 @@ if openai_api_key:
         balance_sheet = balance_sheet.to_string()
         return balance_sheet
 
-    search=DuckDuckGoSearchRun()
-        
+    #Initialize DuckDuckGo Search Engine
+    search=DuckDuckGoSearchRun()     
     tools = [
     Tool(
         name="Stock Ticker Search",
@@ -195,6 +196,5 @@ if openai_api_key:
            # response = json.loads(response)
 
             st.write(response["output"])
-
 
 
