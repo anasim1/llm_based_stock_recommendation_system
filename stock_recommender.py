@@ -165,7 +165,7 @@ if openai_api_key:
 
     steps- 
     Note- if you fail in satisfying any of the step below, Just move to next one
-    1) Get the company name and search for the "company name + NYSE stock ticker" on internet. Dont hallucinate extract stock ticker as it is from the text. Output- stock ticker
+    1) Get the company name and search for the "company name + NYSE stock ticker" on internet. Dont hallucinate extract stock ticker as it is from the text. Output- stock ticker. If stock ticker is not found, stop the process and output this text: This stock does not exist.
     2) Use "get stock data" tool to gather stock info. Output- Stock data
     3) Get company's historic financial data using "get financial statements". Output- Financial statement
     4) Use this "get recent news" tool to search for latest stock realted news. Output- Stock news
