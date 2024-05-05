@@ -8,12 +8,11 @@ import base64
 import json
 import yfinance as yf
 import langchain
-from langchain.agents import load_tools,AgentType,Tool, initialize_agent
+from langchain.agents import Tool, initialize_agent
 from langchain_community.chat_models import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.callbacks import StreamlitCallbackHandler
 import streamlit as st
-import streamlit_scrollable_textbox as stx
 import warnings
 warnings.filterwarnings("ignore")
 
