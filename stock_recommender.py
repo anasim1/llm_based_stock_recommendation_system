@@ -4,19 +4,17 @@ import time
 from bs4 import BeautifulSoup
 import re
 import requests
-import warnings
-import langchain
-from langchain_community.chat_models import ChatOpenAI
-from langchain.agents import load_tools,AgentType,Tool, initialize_agent
-import yfinance as yf
-from langchain_community.tools import DuckDuckGoSearchRun
-import streamlit as st
-import streamlit_scrollable_textbox as stx
 import base64
 import json
+import yfinance as yf
+import langchain
+from langchain.agents import load_tools,AgentType,Tool, initialize_agent
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.callbacks import StreamlitCallbackHandler
-
-
+import streamlit as st
+import streamlit_scrollable_textbox as stx
+import warnings
 warnings.filterwarnings("ignore")
 
 def get_base64(bin_file):
