@@ -43,7 +43,7 @@ st.header('Stock Recommendation System')
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
 st.sidebar.write('This tool provides recommendation based on the RAG & ReAct Based Schemes:')
-lst = ['Get Ticker Value', 'Fetch Historic Data on Stock','Get Financial Statements', 'Scrape the Web for Stock News', 'LLM ReAct based Verbal Analysis','Output Recommendation: Buy, Sell, or Hold with Justification']
+lst = ['Get Ticker Value',  'Fetch Historic Data on Stock','Get Financial Statements','Scrape the Web for Stock News','LLM ReAct based Verbal Analysis','Output Recommendation: Buy, Sell, or Hold with Justification']
 
 s = ''
 
@@ -125,7 +125,7 @@ if openai_api_key:
     Tool(
         name="DuckDuckGo Search",
         func=search.run,
-        description="Use only when you need to get NYSE stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task"
+        description="Use only when you need to get stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task"
 
     ),
     Tool(
@@ -159,13 +159,13 @@ if openai_api_key:
     Answer the following questions as best you can. You have access to the following tools:
 
     get stock data: Use when you are asked to evaluate or analyze a stock. This will output historic share price data. You should input the stock ticker to it 
-    DuckDuckGo Search: Use only when you need to get NYSE stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task
+    DuckDuckGo Search: Use only when you need to get stock ticker from internet, you can also get recent stock related news. Dont use it for any other analysis or task
     get recent news: Use this to fetch recent news about stocks
     get financial statements: Use this to get financial statement of the company. With the help of this data company's historic performance can be evaluaated. You should input stock ticker to it
 
     steps- 
     Note- if you fail in satisfying any of the step below, Just move to next one
-    1) Get the company name and search for the "company name + NYSE stock ticker" on internet. Dont hallucinate extract stock ticker as it is from the text. Output- stock ticker. If stock ticker is not found, stop the process and output this text: This stock does not exist.
+    1) Get the company name and search for the "company name + stock ticker" on internet. Dont hallucinate extract stock ticker as it is from the text. Output- stock ticker. If stock ticker is not found, stop the process and output this text: This stock does not exist
     2) Use "get stock data" tool to gather stock info. Output- Stock data
     3) Get company's historic financial data using "get financial statements". Output- Financial statement
     4) Use this "get recent news" tool to search for latest stock realted news. Output- Stock news
@@ -178,7 +178,7 @@ if openai_api_key:
     Action: the action to take, should be one of [get stock data, DuckDuckGo Search, get recent news, get financial statements]
     Action Input: the input to the action
     Observation: the result of the action
-    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    ... (this Thought/Action/Action Input/Observation can repeat N times, if Thought is empty go to the next Thought and skip Action/Action Input and Observation)
     Thought: I now know the final answer
     Final Answer: the final answer to the original input question
     Begin!
@@ -193,4 +193,9 @@ if openai_api_key:
         with st.chat_message("assistant"):
             st_callback = StreamlitCallbackHandler(st.container())
             response = zero_shot_agent(f'Is {prompt} a good investment choice right now?', callbacks=[st_callback])
+           # response = json.loads(response)
+
             st.write(response["output"])
+
+
+
