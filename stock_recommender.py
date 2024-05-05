@@ -139,8 +139,6 @@ if openai_api_key:
     )
     ]
 
-    from langchain.agents import initialize_agent
-
     zero_shot_agent=initialize_agent(
         llm=llm,
         agent="zero-shot-react-description",
