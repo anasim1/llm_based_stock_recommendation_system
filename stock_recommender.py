@@ -150,7 +150,7 @@ if openai_api_key:
     )
 
     #Adding predefine evaluation steps in the agent Prompt
-    new_prompt="""You are a financial advisor. Give stock recommendations for given query.
+    stock_prompt="""You are a financial advisor. Give stock recommendations for given query.
     Everytime first you should identify the company name and get the stock ticker symbol for the stock.
     Answer the following questions as best you can. You have access to the following tools:
 
@@ -182,7 +182,7 @@ if openai_api_key:
     Question: {input}
     Thought:{agent_scratchpad}"""
 
-    zero_shot_agent.agent.llm_chain.prompt.template=new_prompt
+    zero_shot_agent.agent.llm_chain.prompt.template=stock_prompt
 
     if prompt := st.chat_input():
         st.chat_message("user").write(prompt)
