@@ -17,6 +17,10 @@ Langchain's **Zero-Shot-React-Description** Agent is used that "reAct" as :
 -- Iterative Process
 5. Final Answer
 
+#Work Flow
+![image](https://github.com/anasim1/llm_based_stock_recommendation_system/assets/93553287/bb8bf9c9-aeb4-438c-84b9-76308572daaa)
+
+
 This work has been inspired by:
 https://wire.insiderfinance.io/an-ai-based-stock-analyzer-using-llm-and-langchain-7f8a62cbcaaa
 
