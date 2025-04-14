@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: stock-recommender
+  description: |
+    An GenAI enabled system provides recommendations : Buy, Hold, Sell based on News, Stock Closing Values, and Financial Statements
+  links:
+    - title: Website
+      url: http://backstage.io
+    - title: Documentation
+      url: https://backstage.io/docs
+    - title: Storybook
+      url: https://backstage.io/storybook
+    - title: Discord Chat
+      url: https://discord.com/invite/EBHEGzX
+  annotations:
+    github.com/project-slug: llm_based_stock_recommendation_system
+spec:
+  type: application
+  owner: guests
+  lifecycle: production

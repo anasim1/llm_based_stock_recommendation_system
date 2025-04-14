@@ -169,13 +169,20 @@ if openai_api_key:
     Use the following format:
 
     Question: the input question you must answer
-    Thought: you should always think about what to do, Also try to follow steps mentioned above
-    Action: the action to take, should be one of [Get Stock Historical Price, Stock Ticker Search, Get Recent News, Get Financial Statements]
+    1. If you need to perform an action to answer the user's question, use the following format:
+    '''
+    Thought: Do I need to use a tool? Yes
+    Action: the action to take, should be one of [Get Stock Historical Price, Stock Ticker Search, Get Financial Statements, Get Recent News]
     Action Input: the input to the action
     Observation: the result of the action
-    ... (this Thought/Action/Action Input/Observation can repeat N times, if Thought is empty go to the next Thought and skip Action/Action Input and Observation)
-    Thought: I now know the final answer
+    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    '''
+
+    2. If your thought contains Buy, Hold, or Sell, then you stop looking for more tools, then you MUST use the following format:
+    '''
+    Final Thought: Do I need to use a tool? No
     Final Answer: the final answer to the original input question
+    '''
     Begin!
 
     Question: {input}
